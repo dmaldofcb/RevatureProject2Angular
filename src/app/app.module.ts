@@ -3,14 +3,21 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { OrdersHistoryModule } from './orders-history/orders-history.module';
+import { PizzasModule } from './pizzas/pizzas.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    OrdersHistoryModule,
+    PizzasModule
   ],
   providers: [],
   bootstrap: [AppComponent]
