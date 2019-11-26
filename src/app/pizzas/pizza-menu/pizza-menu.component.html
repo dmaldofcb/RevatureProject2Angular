@@ -1,0 +1,30 @@
+
+
+<div>
+    <h1>Choose a size</h1>
+    <input type="radio" name="size" Value="1">
+    <label for="1">small</label>
+    <input type="radio" name="size" Value="2">
+    <label for="2">medium</label>
+    <input type="radio" name="size" Value="3">
+    <label for="3">Large</label>
+</div>
+
+<div *ngIf = "response">
+    <h1>Choose your toppings</h1>
+    <p *ngFor = "let topping of response.toppings" (click) = "updateTopping(topping)"> {{topping.type}}</p>
+</div>
+
+<div *ngIf = "toppingsList.length > 0">
+    <h1>Chosen toppings</h1>
+    <p *ngFor = "let topping of toppingsList" (click) = "updateTopping(topping)"> {{topping.type}}</p>
+</div>
+
+<div>
+    <button (click) = "addPizza()" > Add pizza to cart</button>
+</div>
+
+<div>
+        <button (click) = "submitOrder()" > finish Order</button>
+</div>
+    
