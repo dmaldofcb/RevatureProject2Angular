@@ -6,7 +6,7 @@ import { PizzaMenuComponent } from './pizzas/pizza-menu/pizza-menu.component';
 
 const routes: Routes = [
   {path: 'Orders', component: OrderHistoryComponent},
-  {path: 'menu', component: PizzaMenuComponent}
+  {path: 'pizzamenu', component: PizzaMenuComponent}
 ];
 
 @NgModule({
