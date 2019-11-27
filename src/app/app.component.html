@@ -1,1 +1,145 @@
-<router-outlet></router-outlet>
+<!-- start navigation -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon icon-bar"></span>
+					<span class="icon icon-bar"></span>
+					<span class="icon icon-bar"></span>
+				</button>
+				<a href="#home" class="navbar-brand smoothScroll"><strong>Callback Cat's Pizzeria</strong></a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#home">HOME</a></li>
+					<li><a routerLink='/pizzamenu' routerLinkActive="active">Custom Order</a></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- end navigation -->
+
+	<!-- start flexslider -->
+	<div class="flexslider">
+		<ul class="slides">
+			<li>
+				<img src="assets/images/slider-img1.jpg" alt="Pizza Image 1">
+				<div class="flex-caption">
+					<h2 class="slider-title">We make Pizza</h2>
+					<h3 class="slider-subtitle">Fresh, clean, and delicious.</h3>
+					<p class="slider-description">Praesent tincidunt neque semper elementum gravida. Donec id euismod magna. Ut erat ligula, malesuada eu quam a, fringilla auctor augue.</p>
+				</div>
+			</li>
+			<li>
+				<img src="assets/images/slider-img2.jpg" alt="Pizza Image 2">
+				<div class="flex-caption">
+					<h2 class="slider-title">Freshly Baked Pizza</h2>
+					<h3 class="slider-subtitle">Premium Quality, Finest Ingredients</h3>
+					<p class="slider-description">Donec id euismod magna. Ut erat ligula, malesuada eu quam a, fringilla auctor augue. Praesent tincidunt neque semper elementum gravida.</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!-- end flexslider -->
+
+	<!-- start about -->
+	<section id="about" class="templatemo-section templatemo-top-130">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<h1 class="text-uppercase">Your Local Pizza Shop</h1>
+				</div>
+				<div class="col-md-6 col-sm-6">					
+          <h3 class="text-uppercase padding-bottom-10">Not Just Another Pizza</h3>
+          <p>
+            At Callback Cat's Pizzeria, we don’t just make pizza. We make people happy. Callback Cat's Pizzeria was built on the belief that pizza night should be special, and we carry that belief into everything we do. With more than 60 years of experience under our belts, we understand how to best serve our customers through tried and true service principles: We create food we’re proud to serve and deliver it fast, with a smile.
+          </p>
+				</div>
+				<div class="col-md-6 col-sm-6">
+					<img src="assets/images/about-img1.jpg" class="img-responsive img-bordered img-about" alt="about img">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end about -->
+
+	<!-- start gallery -->
+	<section id="gallery" class="templatemo-section templatemo-light-gray-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="text-center text-uppercase">Chef Special Pizzas</h2>
+					<hr>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="gallery-wrapper">
+						<img style="background-color: black" src="assets/images/buffalochicken-pizza.png" class="img img-responsive gallery-img" alt="Pizza 1">
+						<div class="gallery-des">
+              <h3>Buffalo Chicken Pizza </h3>
+                <button class="btn">Order</button>
+						</div>
+					</div>
+				</div>	
+				<div class="col-md-4 col-sm-4">
+					<div class="gallery-wrapper">
+						<img style="background-color: black" src="assets/images/hawaiian-pizza.png" class="img img-responsive gallery-img" alt="Pizza 2">
+						<div class="gallery-des">
+                <h3>Hawiian Pizza </h3> 
+                <button class="btn">Order</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="gallery-wrapper">
+						<img style="background-color: black" src="assets/images/meatlovers.png" class="img img-responsive gallery-img" alt="Pizza 3">
+						<div class="gallery-des">
+					      <h3>Meatlovers Pizza </h3>
+                <button class="btn">Order</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="gallery-wrapper">
+						<img style="background-color: black" src="assets/images/pepperoni-pizza.png" class="img img-responsive gallery-img" alt="Pizza 4">
+						<div class="gallery-des">
+                <h3>Pepperoni Pizza </h3>
+                  <button class="btn">Order</button>
+						</div>
+					</div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="gallery-wrapper">
+              <img style="background-color: black" src="assets/images/vegetable-pizza.png" class="img img-responsive gallery-img" alt="Pizza 6">
+              <div class="gallery-des">
+                  <h3>Vegetable Pizza </h3>
+                    <button class="btn">Order</button>
+              </div>
+            </div>
+          </div>
+				<div class="col-md-4 col-sm-4">
+					<div class="gallery-wrapper">
+						<img style="background-color: black" src="assets/images/sausage-pizza.png" class="img img-responsive gallery-img" alt="Pizza 5">
+						<div class="gallery-des">
+					    <h3>Sausage Pizza </h3>
+                <button class="btn">Order</button>
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</section>
+	<!-- end gallery -->
+    <router-outlet></router-outlet>
+
+	<!-- start footer -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p>Copyright &copy; Callback Cat's</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->

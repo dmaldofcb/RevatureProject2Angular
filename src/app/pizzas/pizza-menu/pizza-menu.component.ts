@@ -120,7 +120,7 @@ export class PizzaMenuComponent implements OnInit {
       })
     });
       this.pizzaList = [];
-
+    alert("Succesfully Completed Order");
   }
 
 }

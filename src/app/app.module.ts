@@ -5,19 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OrdersHistoryModule } from './orders-history/orders-history.module';
-import { PizzasModule } from './pizzas/pizzas.module';
+import { PizzaMenuComponent } from './pizzas/pizza-menu/pizza-menu.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    PizzaMenuComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    OrdersHistoryModule,
-    PizzasModule
+    OrdersHistoryModule
   ],
   providers: [],
   bootstrap: [AppComponent]
