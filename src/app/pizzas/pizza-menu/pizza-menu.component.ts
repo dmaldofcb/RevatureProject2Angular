@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { PizzasModle } from 'src/PizzaModel';
+import { OrderModel } from 'src/OrderModel';
+import { formatDate } from '@angular/common';
+import { PizzaToppingsModel } from 'src/PizzaToppings';
+import { OrderDetailsModel } from 'src/OrderDetailsModel';
 
 @Component({
   selector: 'app-pizza-menu',
@@ -8,11 +13,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PizzaMenuComponent implements OnInit {
 
+  
   response: any;
+  postResponse: any;
+  responseOrderID: number;
+  private responsePizzaID:number;
   toppingsList: any[] = [];
   pizzaList: any[] = [];
+  currentPizza: PizzasModle = new PizzasModle();
+  pizzaSize: number;
+  pizzaCrust: number;
+  order: OrderModel = new OrderModel();
+  constructor(private http: HttpClient) { 
 
-  constructor(private http: HttpClient) { }
+  }
 
   ngOnInit() {
     let obs = this.http.get('https://pizzaordersystem.azurewebsites.net/api/PizzaAPI');
@@ -25,21 +39,90 @@ export class PizzaMenuComponent implements OnInit {
 
   updateTopping(topping: any){
 
-    if(!this.toppingsList.includes(topping)){
-      this.toppingsList.push(topping);
+    if(!this.currentPizza.Toppings.includes(topping)){
+      this.currentPizza.Toppings.push(topping);
     }
     else{
-      let index =this.toppingsList.indexOf(topping);
-      this.toppingsList.splice(index,1);
+      let index =this.currentPizza.Toppings.indexOf(topping);
+      this.currentPizza.Toppings.splice(index,1);
     }
+  }
+
+  setCrust(value: number){
+    this.currentPizza.CrustID = +value;
+    console.log(value);
+  }
+
+  setSize(value: number){
+    this.currentPizza.SizeId = +value;
+    console.log(value);
   }
 
   addPizza(){
-    console.log("submitted");
+    console.log("adding pizza");
+    this.pizzaList.push(this.currentPizza);
+    this.currentPizza = new PizzasModle;
+  }
+
+  calculatePrice(PizzaList: PizzasModle){
+    return 10.00
   }
 
   submitOrder(){
+    //get order total
     console.log("order sent");
+    let price = 0;
+    this.pizzaList.forEach(pizza => {
+      price = price + this.calculatePrice(pizza);
+    });
+    //st up order object id default = guest
+    this.order.OrderDate = new Date;
+    this.order.total = price;
+    //post "Guest", date, total to orders
+    let obs = this.http.post('https://pizzaordersystem.azurewebsites.net/api/Orders', this.order);
+    obs.subscribe((response) => {
+      this.postResponse = response;
+      //get orderId of the new record
+      this.responseOrderID = this.postResponse.id;
+    })
+
+
+    //post "custom" sizeid and crustid to pizza table for each pizza
+    this.pizzaList.forEach(pizza => {
+      obs = this.http.post('https://pizzaordersystem.azurewebsites.net/api/pizzaapi/addpizza', pizza);
+      obs.subscribe((response) => {
+        //console.log(response);
+        this.postResponse = response;
+        console.log(this.postResponse);
+        this.responsePizzaID = this.postResponse.id;
+        console.log(this.responsePizzaID);
+
+        //post each ingredientId pizzaId to pizza toppings
+        pizza.Toppings.forEach(topping => {
+          console.log(this.responsePizzaID);
+          let pizzaTopping = new PizzaToppingsModel();
+          pizzaTopping.PizzaID = this.responsePizzaID;
+          pizzaTopping.ToppingsID = topping.id;
+          obs = this.http.post('https://pizzaordersystem.azurewebsites.net/api/ToppingsAPI/AddTopping', pizzaTopping)
+          obs.subscribe((response) =>{
+            console.log(response);
+          })
+        });
+
+        //post each pizzaId to orderId totalPrice details
+        let orderDetails = new OrderDetailsModel();
+        orderDetails.OrderID = this.responseOrderID;
+        orderDetails.PizzaID = this.responsePizzaID;
+        orderDetails.Price = 10.00;
+        obs = this.http.post('https://pizzaordersystem.azurewebsites.net/api/OrderDetails', orderDetails);
+        obs.subscribe((response) => {
+          console.log(response);
+        })
+
+      })
+    });
+      
+
   }
 
 }

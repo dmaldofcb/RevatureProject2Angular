@@ -1,6 +1,6 @@
 
 
-<div>
+<div (change) = "setSize($event.target.value)">
     <h1>Choose a size</h1>
     <input type="radio" name="size" Value="1">
     <label for="1">small</label>
@@ -10,14 +10,24 @@
     <label for="3">Large</label>
 </div>
 
+<div (change) = "setCrust($event.target.value)">
+        <h1>Choose a Crust</h1>
+        <input type="radio" name="crust" Value="1">
+        <label for="1">thin</label>
+        <input type="radio" name="crust" Value="2">
+        <label for="2">thick</label>
+        <input type="radio" name="crust" Value="3">
+        <label for="3">stuffed</label>
+</div>
+
 <div *ngIf = "response">
     <h1>Choose your toppings</h1>
     <p *ngFor = "let topping of response.toppings" (click) = "updateTopping(topping)"> {{topping.type}}</p>
 </div>
 
-<div *ngIf = "toppingsList.length > 0">
+<div *ngIf = "currentPizza.Toppings.length > 0">
     <h1>Chosen toppings</h1>
-    <p *ngFor = "let topping of toppingsList" (click) = "updateTopping(topping)"> {{topping.type}}</p>
+    <p *ngFor = "let topping of currentPizza.Toppings" (click) = "updateTopping(topping)"> {{topping.type}}</p>
 </div>
 
 <div>
