@@ -30,11 +30,11 @@
     <p *ngFor = "let topping of currentPizza.Toppings" (click) = "updateTopping(topping)"> {{topping.type}}</p>
 </div>
 
-<div>
+<div *ngIf = "currentPizza.Toppings.length > 0">
     <button (click) = "addPizza()" > Add pizza to cart</button>
 </div>
 
-<div>
+<div *ngIf = "pizzaList.length > 0">
         <button (click) = "submitOrder()" > finish Order</button>
 </div>
     

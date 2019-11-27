@@ -82,6 +82,7 @@ export class PizzaMenuComponent implements OnInit {
     let obs = this.http.post('https://pizzaordersystem.azurewebsites.net/api/Orders', this.order);
     obs.subscribe((response) => {
       this.postResponse = response;
+      console.log(response);
       //get orderId of the new record
       this.responseOrderID = this.postResponse.id;
     })
@@ -91,15 +92,12 @@ export class PizzaMenuComponent implements OnInit {
     this.pizzaList.forEach(pizza => {
       obs = this.http.post('https://pizzaordersystem.azurewebsites.net/api/pizzaapi/addpizza', pizza);
       obs.subscribe((response) => {
-        //console.log(response);
         this.postResponse = response;
-        console.log(this.postResponse);
+        console.log(response);
         this.responsePizzaID = this.postResponse.id;
-        console.log(this.responsePizzaID);
 
         //post each ingredientId pizzaId to pizza toppings
         pizza.Toppings.forEach(topping => {
-          console.log(this.responsePizzaID);
           let pizzaTopping = new PizzaToppingsModel();
           pizzaTopping.PizzaID = this.responsePizzaID;
           pizzaTopping.ToppingsID = topping.id;
@@ -121,7 +119,7 @@ export class PizzaMenuComponent implements OnInit {
 
       })
     });
-      
+      this.pizzaList = [];
 
   }
 
